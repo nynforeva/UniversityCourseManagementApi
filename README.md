@@ -22,13 +22,13 @@
 
 ## Документация
 
-[Описание API endpoints](docs/endpoints.md) — HTTP-методы, маршруты и примеры запросов.
+[Описание API endpoints](docs/endpoints.md) :HTTP-методы, маршруты и примеры запросов.
 
-[Архитектура проекта](docs/architecture.md) — схема взаимодействия компонентов приложения.
+[Архитектура проекта](docs/architecture.md) схема взаимодействия компонентов приложения.
 
-[База данных PostgreSQL](database/README.md) — описание базы данных.
+[База данных PostgreSQL](database/README.md) описание базы данных.
 
-[Резервная копия базы данных](database/UniversityCourseManagementDb.backup) — дамп PostgreSQL.
+[Резервная копия базы данных](database/UniversityCourseManagementDb.backup) дамп PostgreSQL.
 
 ## Результат работы
 
