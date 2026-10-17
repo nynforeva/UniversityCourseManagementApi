@@ -1,18 +1,21 @@
-Архитектура University Course Management API
+# Архитектура University Course Management API
+
 В ходе практической работы я реализовала многослойную архитектуру REST API на ASP.NET Core.
-Схема архитектуры
+
+## Схема архитектуры
 
 ```mermaid
 flowchart TD
-    A[Клиент / Swagger] --> B[Controllers]
-    B --> C[Services]
-    C --> D[Repositories]
-    D --> E[Entity Framework Core]
-    E --> F[(PostgreSQL)]
-    C --> G[AutoMapper / DTO]
+    A["Клиент / Swagger"] --> B["Controllers"]
+    B --> C["Services"]
+    C --> D["Repositories"]
+    D --> E["Entity Framework Core"]
+    E --> F["PostgreSQL"]
+    C --> G["DTO и AutoMapper"]
 ```
 
-    ## Описание компонентов
+## Описание компонентов
+
 1. **Controllers** — принимают HTTP-запросы от клиента и возвращают ответы.
 2. **Services** — отвечают за основную логику приложения и проверку данных.
 3. **Repositories** — используются для получения, добавления, изменения и удаления данных.
@@ -22,4 +25,4 @@ flowchart TD
 
 Для связи компонентов между собой я использовала Dependency Injection.
 
-Также в проекте реализованы обработка ошибок через Middleware, логирование с помощью ILogger и единый формат ответов ReturnResult<T>.
+Также в проекте реализованы обработка ошибок через Middleware, логирование с помощью ILogger и единый формат ответов `ReturnResult<T>`.
