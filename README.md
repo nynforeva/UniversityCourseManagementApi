@@ -79,6 +79,17 @@
 - `UniversityCourseManagementApi` - основной REST API, база данных, авторизация и Swagger.
 - `UniversityCourseManagementClient` - отдельное MVC-приложение для просмотра курсов.
 - `UniversityCourseManagementTests` - автоматические тесты.
+  flowchart TD
+    A["Пользователь"] --> B["ASP.NET Core MVC"]
+    B -->|"HTTP / IHttpClientFactory"| C["ASP.NET Core Web API"]
+    D["Swagger / API-клиент"] --> C
+    C --> E["JWT Authentication"]
+    E --> F["Авторизация: Admin, Teacher, Student"]
+    F --> G["Controllers"]
+    G --> H["Services"]
+    H --> I["Repositories"]
+    I --> J["Entity Framework Core"]
+    J --> K[("PostgreSQL")]
 
 ## 6. Запуск проекта
 
