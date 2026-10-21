@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using UniversityCourseManagementApi.Models;
 
 namespace UniversityCourseManagementApi.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -48,5 +51,17 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Enrollment>()
             .HasIndex(e => new { e.StudentId, e.CourseId })
             .IsUnique();
+
+        modelBuilder.Entity<ApplicationUser>()
+            .HasOne(u => u.Student)
+            .WithOne()
+            .HasForeignKey<ApplicationUser>(u => u.StudentId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<ApplicationUser>()
+            .HasOne(u => u.Teacher)
+            .WithOne()
+            .HasForeignKey<ApplicationUser>(u => u.TeacherId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

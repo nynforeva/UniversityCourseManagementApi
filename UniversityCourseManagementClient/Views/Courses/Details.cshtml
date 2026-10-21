@@ -1,0 +1,40 @@
+﻿@model UniversityCourseManagementClient.Models.CourseViewModel
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<h1 class="mb-4">Course Details</h1>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+else if (Model != null)
+{
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">@Model.Name</h3>
+
+            <p>@Model.Description</p>
+            <p><strong>Course ID:</strong> @Model.Id</p>
+            <p><strong>Credits:</strong> @Model.Credits</p>
+            <p><strong>Teacher ID:</strong> @Model.TeacherId</p>
+            <p><strong>Created:</strong> @Model.CreatedAt.ToString("dd.MM.yyyy")</p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        Course not found.
+    </div>
+}
+
+<a asp-controller="Courses"
+   asp-action="Index"
+   class="btn btn-secondary mt-3">
+    Back to Courses
+</a>

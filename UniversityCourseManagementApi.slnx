@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="UniversityCourseManagementApi/UniversityCourseManagementApi.csproj" />
+  <Project Path="UniversityCourseManagementClient/UniversityCourseManagementClient.csproj" />
+  <Project Path="UniversityCourseManagementTests/UniversityCourseManagementTests.csproj" />
 </Solution>

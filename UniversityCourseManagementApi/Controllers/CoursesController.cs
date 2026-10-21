@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UniversityCourseManagementApi.Common;
 using UniversityCourseManagementApi.DTO.Courses;
 using UniversityCourseManagementApi.Services;
@@ -15,7 +16,7 @@ public class CoursesController : ControllerBase
     {
         _service = service;
     }
-
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> GetAll(
         [FromQuery] string? name,
@@ -25,7 +26,7 @@ public class CoursesController : ControllerBase
         return Ok(ReturnResult<List<CourseDto>>.Success(
             result, 200, HttpContext.TraceIdentifier));
     }
-
+    [AllowAnonymous]
     [HttpGet("{id:int}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -33,7 +34,7 @@ public class CoursesController : ControllerBase
         return Ok(ReturnResult<CourseDto>.Success(
             result, 200, HttpContext.TraceIdentifier));
     }
-
+    [Authorize(Policy = "AdminOnly")]
     [HttpPost]
     public async Task<IActionResult> Create(CourseCreateDto dto)
     {
@@ -43,7 +44,7 @@ public class CoursesController : ControllerBase
             ReturnResult<CourseDto>.Success(
                 result, 201, HttpContext.TraceIdentifier));
     }
-
+    [Authorize(Policy = "AdminOnly")]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(
         int id, CourseUpdateDto dto)
@@ -52,7 +53,7 @@ public class CoursesController : ControllerBase
         return Ok(ReturnResult<CourseDto>.Success(
             result, 200, HttpContext.TraceIdentifier));
     }
-
+    [Authorize(Policy = "AdminOnly")]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {

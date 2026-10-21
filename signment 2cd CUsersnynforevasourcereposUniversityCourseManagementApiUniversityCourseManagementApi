@@ -1,0 +1,24 @@
+[1mdiff --git a/UniversityCourseManagementApi/appsettings.json b/UniversityCourseManagementApi/appsettings.json[m
+[1mindex a06d62f..93e7f93 100644[m
+[1m--- a/UniversityCourseManagementApi/appsettings.json[m
+[1m+++ b/UniversityCourseManagementApi/appsettings.json[m
+[36m@@ -1,12 +1,14 @@[m
+ {[m
+[31m-  "ConnectionStrings": {[m
+[31m-    "DefaultConnection": "Host=localhost;Port=5432;Database=UniversityCourseManagementDb;Username=postgres;Password=2171"[m
+[31m-  },[m
+   "Logging": {[m
+     "LogLevel": {[m
+       "Default": "Information",[m
+       "Microsoft.AspNetCore": "Warning"[m
+     }[m
+   },[m
+[31m-  "AllowedHosts": "*"[m
+[32m+[m[32m  "Cors": {[m
+[32m+[m[32m    "AllowedOrigins": [[m
+[32m+[m[32m      "http://localhost:5200",[m
+[32m+[m[32m      "http://localhost:5300"[m
+[32m+[m[32m    ][m
+[32m+[m[32m  }[m
+ }[m
+\ No newline at end of file[m
