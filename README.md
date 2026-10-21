@@ -1,5 +1,9 @@
-## 1.
+# University Course Management API
+
+## 1. Описание проекта
+
 В рамках задания разработана и расширена система управления университетскими курсами на ASP.NET Core (.NET 10) с использованием C# и PostgreSQL.
+
 Система позволяет управлять студентами, преподавателями, курсами, записями на курсы и оценками. Во втором задании добавлены аутентификация, авторизация, разграничение доступа, версионирование API, MVC-клиент и автоматическое тестирование.
 
 ## 2. Реализованный функционал
@@ -79,7 +83,11 @@
 - `UniversityCourseManagementApi` - основной REST API, база данных, авторизация и Swagger.
 - `UniversityCourseManagementClient` - отдельное MVC-приложение для просмотра курсов.
 - `UniversityCourseManagementTests` - автоматические тесты.
-  flowchart TD
+
+### Схема архитектуры проекта
+
+```mermaid
+flowchart TD
     A["Пользователь"] --> B["ASP.NET Core MVC"]
     B -->|"HTTP / IHttpClientFactory"| C["ASP.NET Core Web API"]
     D["Swagger / API-клиент"] --> C
@@ -90,6 +98,34 @@
     H --> I["Repositories"]
     I --> J["Entity Framework Core"]
     J --> K[("PostgreSQL")]
+```
+
+### Схема последовательности аутентификации и авторизации
+
+```mermaid
+sequenceDiagram
+    actor U as Пользователь
+    participant A as Web API
+    participant I as ASP.NET Identity
+    participant D as PostgreSQL
+
+    U->>A: POST /api/auth/login
+    A->>I: Проверка логина и пароля
+    I->>D: Получение пользователя
+    D-->>I: Данные пользователя
+    I-->>A: Результат проверки
+    A-->>U: JWT-токен
+
+    U->>A: Запрос с Bearer JWT
+    A->>A: Проверка токена и прав
+    alt Доступ разрешён
+        A->>D: Запрос данных
+        D-->>A: Результат
+        A-->>U: 200 OK
+    else Недостаточно прав
+        A-->>U: 403 Forbidden
+    end
+```
 
 ## 6. Запуск проекта
 
